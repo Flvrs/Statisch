@@ -1,0 +1,23 @@
+{
+  "name": "flvrs/statisch",
+  "description": "A very basic static site generator",
+  "keywords": ["statisch"],
+  "homepage": "https://github.com/Flvrs/Statisch",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Mark Cole",
+      "email": "mark@flvrs.com",
+      "homepage": "http://flvrs.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Flvrs\\Statisch\\": ["src"]
+    }
+  }
+}
