@@ -12,6 +12,5 @@ $container = new Container();
 (new App($container))
     ->bootstrap([
         \Flvrs\Statisch\Commands\HelpCommand::class,
-        \Flvrs\Statisch\Commands\ListCommand::class
     ])
     ->run();
