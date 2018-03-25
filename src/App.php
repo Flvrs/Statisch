@@ -2,12 +2,14 @@
 
 namespace Flvrs\Statisch;
 
+use Psr\Container\ContainerInterface;
+
 class App
 {
     private $container;
     private $commands = [];
 
-    public function __construct($container)
+    public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
     }
@@ -32,8 +34,8 @@ class App
 
     public function run(): void
     {
-        $input = $this->container->get('input');
-        $output = $this->container->get('output');
+        $input = $this->container->get(Console\InputInterface::class);
+        $output = $this->container->get(Console\OutputInterface::class);
 
     }
 }

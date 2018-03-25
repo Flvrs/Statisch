@@ -1,13 +1,15 @@
 #!/usr/bin/env php
 <?php
-require __DIR__.'/vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
-use DI\Container;
+use DI\ContainerBuilder;
 use Flvrs\Statisch\App;
 
 define('STATISCH_START', microtime(true));
 
-$container = new Container();
+$builder = new ContainerBuilder();
+$builder->addDefinitions('config.php');
+$container = $builder->build();
 
 (new App($container))
     ->bootstrap([
