@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+require __DIR__.'/vendor/autoload.php';
+
+use DI\Container;
+use Flvrs\Statisch\App;
+
+define('STATISCH_START', microtime(true));
+
+$container = new Container();
+
+(new App($container))
+    ->bootstrap([
+        \Flvrs\Statisch\Commands\HelpCommand::class,
+        \Flvrs\Statisch\Commands\ListCommand::class
+    ])
+    ->run();
