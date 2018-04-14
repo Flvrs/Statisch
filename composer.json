@@ -19,6 +19,9 @@
   "require-dev": {
     "phpunit/phpunit": "~7.0"
   },
+  "bin": [
+    "statisch"
+  ],
   "autoload": {
     "psr-4": {
       "Flvrs\\Statisch\\": ["src"]
