@@ -4,14 +4,22 @@ namespace Flvrs\Statisch\Console;
 
 class ConsoleOutput implements OutputInterface
 {
+    private $stdout = null;
 
-    public function write(string $message)
+    private function __construct()
     {
-        // TODO: Implement write() method.
+        $this->stdout = fopen('php://stdout', 'w');
     }
 
-    public function writeMessages(array $messages)
+    public function write(string $message) : void
     {
-        // TODO: Implement writeMessages() method.
+        fwrite($this->stdout, $message);
+    }
+
+    public function writeMessages(array $messages) : void
+    {
+        foreach ($messages as $message) {
+            $this->write($message);
+        }
     }
 }
