@@ -7,11 +7,15 @@ use Psr\Container\ContainerInterface;
 class App
 {
     private $container;
+    private $input;
+    private $output;
     private $commands = [];
 
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
+        $this->input = $this->container->get(Console\InputInterface::class);
+        $this->output = $this->container->get(Console\OutputInterface::class);
     }
 
     public function bootstrap(array $classes): App
@@ -34,15 +38,12 @@ class App
 
     public function run(): void
     {
-        $input = $this->container->get(Console\InputInterface::class);
-        $output = $this->container->get(Console\OutputInterface::class);
-
-        if (!array_key_exists(strtolower($input->getCommandArgument()), $this->commands)) {
+        if (!array_key_exists(strtolower($this->input->getCommandArgument()), $this->commands)) {
             // @TODO Proper output and escape
-            $output->write('Command Not Found');
+            $this->output->write('Command Not Found');
             return;
         }
 
-        $this->commands[strtolower($input->getCommandArgument())]->run();
+        $this->commands[strtolower($this->input->getCommandArgument())]->run();
     }
 }

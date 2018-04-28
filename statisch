@@ -19,6 +19,7 @@ define('STATISCH_START', microtime(true));
 
 $builder = new ContainerBuilder();
 $builder->addDefinitions(__DIR__ . '/config.php');
+$builder->useAutowiring(true);
 $container = $builder->build();
 
 (new App($container))

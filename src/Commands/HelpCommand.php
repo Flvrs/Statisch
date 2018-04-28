@@ -2,6 +2,9 @@
 
 namespace Flvrs\Statisch\Commands;
 
+use Flvrs\Statisch\Console\InputInterface;
+use Flvrs\Statisch\Console\OutputInterface;
+
 class HelpCommand implements CommandInterface
 {
     private $name = 'Help';
@@ -9,8 +12,13 @@ class HelpCommand implements CommandInterface
     private $help = 'bin/vendor/flvrs/statisch help';
     private $aliases = [];
 
-    public function __construct()
+    private $input;
+    private $output;
+
+    public function __construct(InputInterface $input, OutputInterface $output)
     {
+        $this->input = $input;
+        $this->output = $output;
     }
 
     public function getName(): string
