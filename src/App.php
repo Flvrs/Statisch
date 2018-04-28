@@ -25,10 +25,10 @@ class App
 
     public function registerCommand(Commands\CommandInterface $command): void
     {
-        $this->commands[$command->getName()] = $command;
+        $this->commands[strtolower($command->getName())] = $command;
 
         foreach ($command->getAliases() as $alias) {
-            $this->commands[$alias] = $command;
+            $this->commands[strtolower($alias)] = $command;
         }
     }
 
@@ -37,5 +37,12 @@ class App
         $input = $this->container->get(Console\InputInterface::class);
         $output = $this->container->get(Console\OutputInterface::class);
 
+        if (!array_key_exists(strtolower($input->getCommandArgument()), $this->commands)) {
+            // @TODO Proper output and escape
+            $output->write('Command Not Found');
+            return;
+        }
+
+        $this->commands[strtolower($input->getCommandArgument())]->run();
     }
 }

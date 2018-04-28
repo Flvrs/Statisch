@@ -18,7 +18,7 @@ use Flvrs\Statisch\App;
 define('STATISCH_START', microtime(true));
 
 $builder = new ContainerBuilder();
-$builder->addDefinitions('config.php');
+$builder->addDefinitions(__DIR__ . '/config.php');
 $container = $builder->build();
 
 (new App($container))

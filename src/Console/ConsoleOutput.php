@@ -6,9 +6,14 @@ class ConsoleOutput implements OutputInterface
 {
     private $stdout = null;
 
-    private function __construct()
+    public function __construct()
     {
         $this->stdout = fopen('php://stdout', 'w');
+    }
+
+    public function __destruct()
+    {
+        fclose($this->stdout);
     }
 
     public function write(string $message) : void
