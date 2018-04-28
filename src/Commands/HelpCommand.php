@@ -9,7 +9,7 @@ class HelpCommand implements CommandInterface
 {
     private $name = 'Help';
     private $description = 'Get help on all of your commands';
-    private $help = 'bin/vendor/flvrs/statisch help';
+    private $help = 'vendor/bin/statisch help';
     private $aliases = [];
 
     private $input;
@@ -43,6 +43,12 @@ class HelpCommand implements CommandInterface
 
     public function run(): bool
     {
+        $this->output->writeMessages([
+            'List of available commands:',
+            '- Help',
+            '- Install',
+            '- Generate'
+        ]);
         return false;
     }
 }

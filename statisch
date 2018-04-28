@@ -25,5 +25,6 @@ $container = $builder->build();
 (new App($container))
     ->bootstrap([
         \Flvrs\Statisch\Commands\HelpCommand::class,
+        \Flvrs\Statisch\Commands\InstallCommand::class,
     ])
     ->run();

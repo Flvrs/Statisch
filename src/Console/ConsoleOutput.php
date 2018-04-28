@@ -24,7 +24,7 @@ class ConsoleOutput implements OutputInterface
     public function writeMessages(array $messages) : void
     {
         foreach ($messages as $message) {
-            $this->write($message);
+            $this->write($message . PHP_EOL);
         }
     }
 }
