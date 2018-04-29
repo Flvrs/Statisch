@@ -43,11 +43,11 @@ class InstallCommand implements CommandInterface
 
     public function run(): bool
     {
-        $this->copyDistToUserDirectory();
+        $this->copyDistToWorkingDirectory();
         return false;
     }
 
-    public function copyDistToUserDirectory()
+    public function copyDistToWorkingDirectory()
     {
         $install_dir = getcwd();
         $dist_dir = realpath(__DIR__ . '../../../dist');
