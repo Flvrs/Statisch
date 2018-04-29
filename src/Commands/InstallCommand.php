@@ -43,11 +43,20 @@ class InstallCommand implements CommandInterface
 
     public function run(): bool
     {
-        $this->copyDistToWorkingDirectory();
-        return false;
+        try {
+            $this->copyDistToWorkingDirectory();
+        } catch (\Exception $e) {
+            $this->output->writeMessages([
+                'The Install Command encountered the following error:',
+                $e->getMessage(),
+                'Please ensure you have the correct permissions set.'
+            ]);
+        }
+
+        return true;
     }
 
-    public function copyDistToWorkingDirectory()
+    public function copyDistToWorkingDirectory(): void
     {
         $install_dir = getcwd();
         $dist_dir = realpath(__DIR__ . '../../../dist');
@@ -56,13 +65,17 @@ class InstallCommand implements CommandInterface
         foreach (new \RecursiveIteratorIterator($dir) as $filename => $file) {
             $clean_dir_name = str_replace($dist_dir, '', $file->getPath());
             $new_path = $install_dir . $clean_dir_name;
+            $new_file = $new_path . DIRECTORY_SEPARATOR . $file->getFilename();
 
             if (!is_dir($new_path)) {
-                mkdir($new_path);
+                if (!mkdir($new_path)) {
+                    throw new \Exception('Could not create folder: ' . $new_path);
+                }
             }
 
-            copy($filename, $new_path . DIRECTORY_SEPARATOR . $file->getFilename());
+            if (!copy($filename, $new_file)) {
+                throw new \Exception('Could not create file: ' . $new_file);
+            }
         }
-
     }
 }

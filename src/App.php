@@ -40,10 +40,14 @@ class App
     {
         if (!array_key_exists(strtolower($this->input->getCommandArgument()), $this->commands)) {
             // @TODO Proper output and escape
-            $this->output->write('Command Not Found');
+            $this->output->write('Command not found');
             return;
         }
 
-        $this->commands[strtolower($this->input->getCommandArgument())]->run();
+        $commandCompletedSuccessfully = $this->commands[strtolower($this->input->getCommandArgument())]->run();
+
+        if (!$commandCompletedSuccessfully) {
+            $this->output->write('Command failed to execute');
+        }
     }
 }

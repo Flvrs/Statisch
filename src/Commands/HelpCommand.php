@@ -49,6 +49,7 @@ class HelpCommand implements CommandInterface
             '- Install',
             '- Generate'
         ]);
-        return false;
+
+        return true;
     }
 }
