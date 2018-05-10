@@ -2,12 +2,15 @@
 
 return [
     '/' => [
-        'template' => 'home.twig'
+        'template' => 'home.twig',
+        'content' => 'home.md'
     ],
     '/articles' => [
-        'template' => 'articles.twig'
+        'template' => 'articles.twig',
+        'content' => 'articles.md'
     ],
     '/articles/{slug}' => [
-        'template' => 'articles/{slug}.twig'
+        'template' => 'article.twig',
+        'content' => 'articles/{slug}.md',
     ]
 ];

@@ -1,0 +1,21 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %}Statisch{% endblock %}</title>
+    <meta name="description" content="{% block description %}Description goes here{% endblock %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {% for file in css  %}
+    <link rel="stylesheet" href="{{ file }}">
+    {% endfor %}
+</head>
+<body>
+{% block content %}{% endblock %}
+
+{% for file in js %}
+    <script src="{{ file }}"></script>
+{% endfor %}
+</body>
+</html>
